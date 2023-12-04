@@ -8,9 +8,12 @@
         v-btn.mt-5(:href='`/e/` + locale + `/` + path', x-large)
           v-icon(left) mdi-plus
           span {{ $t('newpage.create') }}
-        v-btn.mt-5(color='purple lighten-3', href='javascript:window.history.go(-1);', outlined)
+        v-btn.mt-5(color='purple lighten-3', href='javascript:window.history.go(-1);', outlined, v-if="canGoBack")
           v-icon(left) mdi-arrow-left
           span {{ $t('newpage.goback') }}
+        v-btn.mt-5(color='purple lighten-3', href='/', large, outlined)
+          v-icon(left) mdi-home
+          span {{$t('notfound.gohome')}}
 </template>
 
 <script>
@@ -27,7 +30,9 @@ export default {
     }
   },
   data() {
-    return { }
+    return {
+      canGoBack: window.history.length !== 1,
+    }
   }
 }
 </script>

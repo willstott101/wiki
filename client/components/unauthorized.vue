@@ -8,9 +8,12 @@
         v-btn.mt-5(href='/login', x-large)
           v-icon(left) mdi-login
           span {{$t('unauthorized.login')}}
-        v-btn.mt-5(color='red lighten-4', href='javascript:window.history.go(-1);', outlined)
+        v-btn.mt-5(color='red lighten-4', href='javascript:window.history.go(-1);', outlined, v-if="canGoBack")
           v-icon(left) mdi-arrow-left
           span {{$t('unauthorized.goback')}}
+        v-btn.mt-5(color='red lighten-4', href='/', large, outlined)
+          v-icon(left) mdi-home
+          span {{$t('notfound.gohome')}}
 </template>
 
 <script>
@@ -23,7 +26,9 @@ export default {
     }
   },
   data() {
-    return { }
+    return {
+      canGoBack: window.history.length !== 1,
+    }
   }
 }
 </script>
